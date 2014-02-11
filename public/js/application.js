@@ -4,8 +4,20 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
-  var request_data = {"username": window.location.pathname.substr(1)};
-  $.post("/tweets", request_data, function(data) {
-      $(".tweets").html(data);
+  $("form").submit(function(e) {
+    e.preventDefault();
+    $.post("/tweet", $("form").serialize(), function(data) {
+      console.log(data);
+      $("#all-good").toggle();
+    })
   })
+
+
+  // var request_data = {"username": window.location.pathname.substr(1)};
+  // $.post("/tweets", request_data, function(data) {
+  //     $(".tweets").html(data);
+  // });
+
+
 });
+
